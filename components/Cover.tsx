@@ -11,55 +11,45 @@ export function Cover({ sections }: CoverProps) {
     <section
       id="top"
       aria-labelledby="cover-title"
-      className="mx-auto w-full max-w-[1220px] px-4 pb-14 pt-12 md:pb-18 md:pt-14"
+      className="mx-auto w-full max-w-[1100px] px-4 pb-12 pt-10 md:pb-14 md:pt-14"
     >
-      <div className="relative overflow-hidden rounded-[34px] border border-[var(--color-line)] bg-[linear-gradient(140deg,#fffaf0_12%,#f3e6cf_52%,#f0dec2_100%)] p-6 shadow-[0_35px_100px_-70px_rgba(20,17,15,0.95)] md:p-9">
-        <div
-          aria-hidden
-          className="soft-drift pointer-events-none absolute -right-20 top-[-72px] h-[240px] w-[240px] rounded-full bg-[radial-gradient(circle,#e9cf9d_10%,rgba(233,207,157,0.1)_60%,transparent_70%)]"
-        />
-        <div
-          aria-hidden
-          className="soft-drift pointer-events-none absolute -left-16 bottom-[-120px] h-[260px] w-[260px] rounded-full bg-[radial-gradient(circle,#d7e3dc_10%,rgba(215,227,220,0.12)_60%,transparent_72%)]"
-        />
-        <div className="relative grid gap-8 lg:grid-cols-[1.03fr_1.2fr] lg:items-end">
-          <div className="hero-reveal">
-            <p className="font-label text-[0.66rem] uppercase tracking-[0.2em] text-[var(--color-ink-soft)]">
+      <div className="rounded-[26px] border border-[var(--color-line)] bg-[var(--color-surface)] p-6 md:p-10">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-end">
+          <div>
+            <p className="font-label text-[0.66rem] uppercase tracking-[0.16em] text-[var(--color-ink-soft)]">
               Editorial Booklet 2026
             </p>
             <Image
               src="/logo.svg"
               alt="The Great Mystery logo"
-              className="my-6 h-auto w-full max-w-[112px]"
-              width={112}
-              height={112}
+              className="my-6 h-auto w-full max-w-[286px] md:max-w-[340px]"
+              width={340}
+              height={84}
               priority
             />
-            <h1 id="cover-title" className="font-heading text-[2.2rem] leading-[0.95] text-[var(--color-ink)] md:text-[4.75rem]">
-              The Great
-              <br />
-              Mystery
+            <h1 id="cover-title" className="sr-only">
+              The Great Mystery
             </h1>
-            <p className="hero-reveal-2 mt-6 max-w-[37ch] text-[1.02rem] leading-relaxed text-[var(--color-ink-soft)] md:text-[1.12rem]">
-              A world-class brand booklet designed to express philosophy, visual language, and strategic direction through a cinematic narrative rhythm.
+            <p className="reading-measure mt-5 text-[1.08rem] leading-[1.68] text-[var(--color-ink-soft)] md:text-[1.15rem]">
+              Philosophy, brand system, and strategic roadmap presented with calm editorial rhythm and readable hierarchy.
             </p>
-            <dl className="hero-reveal-3 mt-8 grid max-w-[500px] grid-cols-3 gap-3 border-t border-[var(--color-line)] pt-5">
+            <dl className="mt-8 grid max-w-[500px] grid-cols-3 gap-3 border-t border-[var(--color-line)] pt-5">
               <div>
-                <dt className="font-label text-[0.62rem] uppercase tracking-[0.15em] text-[var(--color-ink-soft)]">Chapters</dt>
-                <dd className="font-heading mt-2 text-2xl">{sections.length}</dd>
+                <dt className="font-label text-[0.62rem] uppercase tracking-[0.12em] text-[var(--color-ink-soft)]">Chapters</dt>
+                <dd className="font-heading mt-2 text-[1.55rem]">{sections.length}</dd>
               </div>
               <div>
-                <dt className="font-label text-[0.62rem] uppercase tracking-[0.15em] text-[var(--color-ink-soft)]">Positioning</dt>
-                <dd className="font-heading mt-2 text-2xl">Premium</dd>
+                <dt className="font-label text-[0.62rem] uppercase tracking-[0.12em] text-[var(--color-ink-soft)]">Format</dt>
+                <dd className="font-heading mt-2 text-[1.55rem]">Booklet</dd>
               </div>
               <div>
-                <dt className="font-label text-[0.62rem] uppercase tracking-[0.15em] text-[var(--color-ink-soft)]">Mood</dt>
-                <dd className="font-heading mt-2 text-2xl">Wonder</dd>
+                <dt className="font-label text-[0.62rem] uppercase tracking-[0.12em] text-[var(--color-ink-soft)]">Tone</dt>
+                <dd className="font-heading mt-2 text-[1.55rem]">Calm</dd>
               </div>
             </dl>
           </div>
 
-          <figure className="hero-reveal-2 overflow-hidden rounded-[26px] border border-[var(--color-line)] bg-[#faf3e4]">
+          <figure className="overflow-hidden rounded-[18px] border border-[var(--color-line)] bg-[#f3ede0]">
             <Image
               src="/editorial/cover-atlas.png"
               alt="Cinematic Atlantic coastline at golden hour representing wonder and exploration"
@@ -72,7 +62,7 @@ export function Cover({ sections }: CoverProps) {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-12">
         <Contents sections={sections} />
       </div>
     </section>

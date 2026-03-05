@@ -1,25 +1,29 @@
 import type { Metadata } from "next";
-import { Newsreader, Source_Sans_3, IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { Inter, Staatliches } from "next/font/google";
 import "./globals.css";
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap"
 });
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const staatliches = Staatliches({
+  variable: "--font-staatliches",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["400"],
   display: "swap"
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+const perfectlyNineties = localFont({
+  variable: "--font-perfectly-nineties",
+  src: [
+    { path: "../public/fonts/PerfectlyNineties-Regular.otf", weight: "400", style: "normal" },
+    { path: "../public/fonts/PerfectlyNineties-Semibold.otf", weight: "600", style: "normal" },
+    { path: "../public/fonts/PerfectlyNineties-Bold.otf", weight: "700", style: "normal" }
+  ],
   display: "swap"
 });
 
@@ -36,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceSans.variable} ${newsreader.variable} ${plexMono.variable} bg-[#f4efe4] text-[#171513] antialiased`}
+        className={`${inter.variable} ${perfectlyNineties.variable} ${staatliches.variable} bg-[#f4efe4] text-[#171513] antialiased`}
       >
         {children}
       </body>
