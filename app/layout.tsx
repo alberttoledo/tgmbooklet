@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Newsreader, Source_Sans_3, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const sourceSans = Source_Sans_3({
+  variable: "--font-source-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap"
 });
 
-const bodoni = Bodoni_Moda({
-  variable: "--font-bodoni",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+  weight: ["500", "600", "700", "800"],
   display: "swap"
 });
 
@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${bodoni.variable} ${plexMono.variable} bg-[#f5efe2] text-[#14110f] antialiased`}
+        className={`${sourceSans.variable} ${newsreader.variable} ${plexMono.variable} bg-[#f4efe4] text-[#171513] antialiased`}
       >
         {children}
       </body>

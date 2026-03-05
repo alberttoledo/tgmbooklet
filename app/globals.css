@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --font-heading: var(--font-bodoni), "Times New Roman", serif;
-  --font-body: var(--font-manrope), "Avenir Next", sans-serif;
+  --font-heading: var(--font-newsreader), "Times New Roman", serif;
+  --font-body: var(--font-source-sans), "Avenir Next", sans-serif;
   --font-label: var(--font-plex-mono), "SFMono-Regular", monospace;
-  --color-paper: #f5efe2;
-  --color-paper-strong: #ecdfc8;
-  --color-ink: #14110f;
-  --color-ink-soft: #544a40;
+  --color-paper: #f4efe4;
+  --color-paper-strong: #ece2cf;
+  --color-ink: #171513;
+  --color-ink-soft: #4d4640;
   --color-accent: #c07a1f;
   --color-accent-deep: #9f5f09;
   --color-deep: #123441;
-  --color-line: rgba(20, 17, 15, 0.16);
+  --color-line: rgba(23, 21, 19, 0.14);
 }
 
 html {
@@ -26,7 +26,9 @@ body {
   font-family: var(--font-body);
   color: var(--color-ink);
   background: transparent;
-  line-height: 1.55;
+  font-size: clamp(1rem, 0.985rem + 0.18vw, 1.08rem);
+  line-height: 1.62;
+  letter-spacing: 0.002em;
   min-height: 100vh;
 }
 
@@ -56,12 +58,16 @@ li {
 
 .dropcap::first-letter {
   float: left;
-  margin-right: 0.62rem;
-  margin-top: 0.34rem;
+  margin-right: 0.5rem;
+  margin-top: 0.23rem;
   font-family: var(--font-heading);
-  font-size: clamp(2.9rem, 5.2vw, 4rem);
-  line-height: 0.7;
+  font-size: clamp(2.4rem, 3.3vw, 3.1rem);
+  line-height: 0.78;
   color: var(--color-accent-deep);
+}
+
+.reading-flow {
+  max-width: 66ch;
 }
 
 .booklet-grid {
