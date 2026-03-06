@@ -1,636 +1,1189 @@
 import Image from "next/image";
 
+/* ═══════════════════════════════════════════
+   Helper Components
+   ═══════════════════════════════════════════ */
+
+function ChapterHead({ num, title }: { num: string; title: string }) {
+  return (
+    <header className="section-head">
+      <span className="chapter-num">{num}</span>
+      <h2 className="t-chapter mt-1">{title}</h2>
+    </header>
+  );
+}
+
+function PullQuote({ children }: { children: React.ReactNode }) {
+  return <blockquote className="pull-quote">{children}</blockquote>;
+}
+
+function Spread({
+  src,
+  alt,
+  caption,
+  remote = false
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  remote?: boolean;
+}) {
+  return (
+    <figure className="image-spread" role="group" aria-label={alt}>
+      <div className="image-spread-bleed">
+        {remote ? (
+          <img src={src} alt={alt} loading="lazy" />
+        ) : (
+          <Image src={src} alt={alt} width={1920} height={1080} />
+        )}
+      </div>
+      {caption && <figcaption className="t-caption">{caption}</figcaption>}
+    </figure>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   PAGE
+   ═══════════════════════════════════════════ */
+
 export default function HomePage() {
   return (
-    <div className="page-grid relative pb-16">
-      <header className="sticky top-0 z-50 border-b border-[var(--color-line)] bg-[color:var(--color-paper)]/95 backdrop-blur print:hidden">
-        <div className="mx-auto flex h-16 w-full max-w-[1180px] items-center justify-between px-4 md:px-8">
-          <a href="#top" aria-label="The Great Mystery home" className="inline-flex items-center">
+    <div className="bg-[var(--paper)]">
+      {/* ────── Navigation ────── */}
+      <nav className="site-nav print:hidden" aria-label="Document navigation">
+        <div className="page-w flex h-14 items-center justify-between">
+          <a href="#top" aria-label="Back to top" className="inline-flex items-center">
             <img
               src="https://thegreatmystery.one/fullLogo.png"
-              alt="The Great Mystery one logo"
-              className="h-auto w-[170px] md:w-[205px]"
+              alt="The Great Mystery logo"
+              className="h-auto w-[160px] md:w-[190px]"
             />
           </a>
-          <nav aria-label="Document navigation" className="hidden items-center gap-5 md:flex">
-            <a href="#contents" className="nav-link">Contents</a>
-            <a href="#visual-language" className="nav-link">Visual Language</a>
-            <a href="#studio-blueprint" className="nav-link">Studio Blueprint</a>
+          <div className="hidden items-center gap-7 md:flex">
+            <a href="#manifesto" className="nav-link">Manifesto</a>
+            <a href="#studio" className="nav-link">Studio</a>
+            <a href="#revenue" className="nav-link">Revenue</a>
             <a href="#roadmap" className="nav-link">Roadmap</a>
-            <a href="#vision" className="nav-link">Vision</a>
-          </nav>
+            <a href="#playbook" className="nav-link">Playbook</a>
+          </div>
         </div>
-      </header>
+      </nav>
 
-      <main id="top" className="mx-auto w-full space-y-14 px-4 pb-10 pt-8 md:space-y-20 md:px-8 md:pt-12">
-        <section className="hero-stage reveal-in overflow-hidden">
-          <div className="cover-layout p-6 pb-8 md:p-10 md:pb-10">
-            <div className="hero-shell">
-            <p className="chapter-eyebrow text-black/70">Founder Review Draft · March 2026</p>
-            <div className="mt-4">
-              <p className="cover-brand">
-                <span className="font-brand text-black">The Great Mystery</span> · Strategy Dossier
+      <main id="top">
+        {/* ════════════════════════════════════
+            HERO
+            ════════════════════════════════════ */}
+        <section className="hero page-w">
+          <div className="hero-grid">
+            <div>
+              <p className="t-label">March 2026 · Strategy Dossier</p>
+              <p className="t-brand mt-4 text-[1.4rem] leading-none md:text-[1.6rem]">
+                The Great Mystery
               </p>
-              <h1 className="hero-title font-display mt-4">
-                A philosophy studio
-                <br />
-                built as a living system
+              <h1 className="t-hero mt-5">
+                A philosophy studio built as a living system
               </h1>
-              <p className="mt-5 max-w-[58ch] text-[1.03rem] leading-[1.66] text-black/85 md:text-[1.12rem]">
-                Identity, audience growth, apps, products, community, and experiences as one
-                compounding brand architecture.
+              <p className="t-lead mt-6 max-w-[52ch]">
+                Identity, audience growth, apps, products, community, and
+                experiences — compounding as one brand architecture.
               </p>
+              <dl className="key-facts">
+                <div className="key-facts-row">
+                  <dt>Trajectory</dt>
+                  <dd>10k — 100k — 1M followers</dd>
+                </div>
+                <div className="key-facts-row">
+                  <dt>Core Sequence</dt>
+                  <dd>Audience → App → Community → Products → Experiences</dd>
+                </div>
+                <div className="key-facts-row">
+                  <dt>Revenue Potential</dt>
+                  <dd>~$205k/month at mature stage</dd>
+                </div>
+              </dl>
             </div>
-
-            <div className="cover-grid mt-8">
-              <article className="cover-panel">
-                <p className="panel-kicker">Trajectory</p>
-                <p className="mt-3 text-[1.02rem] leading-[1.45] text-[var(--color-ink)]">
-                  10k → 100k → 1M audience
-                </p>
-              </article>
-              <article className="cover-panel">
-                <p className="panel-kicker">Core Sequence</p>
-                <p className="mt-3 text-[0.98rem] leading-[1.55] text-[var(--color-ink-soft)]">
-                  Audience → App → Community → Products → Experiences
-                </p>
-              </article>
-              <article className="cover-panel">
-                <p className="panel-kicker">Revenue Potential</p>
-                <p className="mt-3 text-[1.02rem] leading-[1.45] text-[var(--color-ink)]">
-                  ~$205k/month at mature stage
-                </p>
-              </article>
-            </div>
-            </div>
-            <figure className="hero-media">
+            <div>
               <img
                 src="https://thegreatmystery.one/bgnobottom.jpg"
-                alt="Sailboat visual from The Great Mystery world"
-                className="hero-image"
+                alt="Sailboat at golden hour — the visual world of The Great Mystery"
+                className="hero-img"
               />
-            </figure>
-          </div>
-        </section>
-
-        <section id="contents" className="brand-surface booklet-grid reveal-in p-6 md:p-9">
-          <p className="chapter-eyebrow">Navigation</p>
-          <h2 className="section-title mt-2">Contents</h2>
-          <p className="mt-3 max-w-[70ch] text-[1.04rem] leading-[1.66] text-[var(--color-ink-soft)] md:text-[1.12rem]">
-            Ordered for decision-making: positioning, visual system, growth engine, revenue model,
-            and phased execution priorities.
-          </p>
-
-          <div className="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            <a href="#manifesto" className="content-tile"><span>01</span> Manifesto</a>
-            <a href="#visual-language" className="content-tile"><span>02</span> Visual Language</a>
-            <a href="#audience-engine" className="content-tile"><span>03</span> Audience Engine</a>
-            <a href="#format-system" className="content-tile"><span>04</span> Reel Format System</a>
-            <a href="#prompt-system" className="content-tile"><span>05</span> Prompt + Production System</a>
-            <a href="#studio-blueprint" className="content-tile"><span>06</span> Philosophy Studio Blueprint</a>
-            <a href="#business-architecture" className="content-tile"><span>07</span> Business Architecture</a>
-            <a href="#revenue-stack" className="content-tile"><span>08</span> Revenue Stack</a>
-            <a href="#roadmap" className="content-tile"><span>09</span> Sequenced Roadmap</a>
-            <a href="#vision" className="content-tile"><span>10</span> Vision + Founder Edge</a>
-          </div>
-        </section>
-
-        <section id="manifesto" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 01</p>
-          <h2 className="section-title mt-2">Manifesto</h2>
-
-          <div className="mt-8 grid gap-7 lg:grid-cols-[1.24fr_0.76fr]">
-            <div className="space-y-5 text-[1.06rem] leading-[1.74] text-[var(--color-ink-soft)] md:text-[1.14rem]">
-              <p>
-                Existence itself remains a mystery.{" "}
-                <span className="brand-wordmark">The Great Mystery</span> treats this not as a
-                problem to eliminate, but as the source of meaning, curiosity, and aliveness.
-              </p>
-              <p>
-                Strategic test for this phase: can this positioning attract a broad audience while
-                keeping a distinct point of view that feels coherent across media, apps, and
-                experiences.
-              </p>
-              <p>
-                The core principle is simple: life is not a puzzle to finish. Life is an experience
-                to inhabit fully, with wonder.
-              </p>
-            </div>
-            <aside className="quote-panel">
-              <p>
-                The strange thing about life is that we are inside the mystery, not outside it.
-              </p>
-            </aside>
-          </div>
-        </section>
-
-        <section id="visual-language" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 02</p>
-          <h2 className="section-title mt-2">Visual Language</h2>
-
-          <div className="mt-7 grid gap-4 lg:grid-cols-2">
-            <article className="surface-panel">
-              <p className="panel-kicker">Core Aesthetic</p>
-              <h3 className="panel-title">Dreamlike realism, warm curiosity, cinematic wonder.</h3>
-              <ul className="mt-4 space-y-2 text-[1rem] leading-[1.58] text-[var(--color-ink-soft)]">
-                <li>Terrence Malick atmosphere</li>
-                <li>Travel documentary intimacy</li>
-                <li>Cosmic imagery with grounded human life</li>
-                <li>Warm Mediterranean texture and light</li>
-              </ul>
-            </article>
-            <article className="surface-panel atmosphere-panel">
-              <p className="panel-kicker">Mood Rule</p>
-              <h3 className="panel-title">A quiet moment of wonder. Never a lecture.</h3>
-              <p className="mt-4 text-[1rem] leading-[1.62] text-[var(--color-ink-soft)]">
-                Warm, vibrant, life-affirming. Avoid black backgrounds, neon cyberpunk, and dark
-                motivational styling.
-              </p>
-            </article>
-          </div>
-
-          <div className="mt-6 surface-panel">
-            <p className="panel-kicker">Color Catalogue</p>
-            <div className="mt-4 grid gap-3 md:grid-cols-4">
-              <div className="palette-card"><span style={{ background: "#F7B500" }} />Golden Sunlight</div>
-              <div className="palette-card"><span style={{ background: "#2DBCCB" }} />Turquoise Sea</div>
-              <div className="palette-card"><span style={{ background: "#2C5AA0" }} />Deep Blue Sky</div>
-              <div className="palette-card"><span style={{ background: "#D69C77" }} />Warm Skin Tones</div>
-              <div className="palette-card"><span style={{ background: "#FF8B3E" }} />Orange Sunset</div>
-              <div className="palette-card"><span style={{ background: "#6E4AC5" }} />Cosmic Purple</div>
-              <div className="palette-card"><span style={{ background: "#1E9B6F" }} />Emerald Green</div>
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            <figure className="reference-card">
-              <Image src="/editorial/references/malick-style.png" alt="Terrence Malick influence" width={1536} height={1024} className="h-auto w-full" />
-              <figcaption>Terrence Malick influence</figcaption>
-            </figure>
-            <figure className="reference-card">
-              <Image src="/editorial/references/travel-doc-style.png" alt="Travel documentary influence" width={1536} height={1024} className="h-auto w-full" />
-              <figcaption>Travel documentary influence</figcaption>
-            </figure>
-            <figure className="reference-card">
-              <Image src="/editorial/references/cosmic-style.png" alt="Cosmic imagery influence" width={1536} height={1024} className="h-auto w-full" />
-              <figcaption>Cosmic imagery influence</figcaption>
-            </figure>
-            <figure className="reference-card">
-              <Image src="/editorial/references/mediterranean-life-style.png" alt="Warm Mediterranean life influence" width={1536} height={1024} className="h-auto w-full" />
-              <figcaption>Warm Mediterranean life</figcaption>
-            </figure>
-            <figure className="reference-card">
-              <Image src="/editorial/references/quiet-philosophy-style.png" alt="Quiet philosophical moments" width={1536} height={1024} className="h-auto w-full" />
-              <figcaption>Quiet philosophical moments</figcaption>
-            </figure>
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <article className="surface-panel">
-              <p className="panel-kicker">Cinematic Grammar</p>
-              <p className="mt-2 text-[1rem] leading-[1.62] text-[var(--color-ink-soft)]">
-                35mm feel, anamorphic lens character, shallow depth of field, natural light, soft
-                film grain, and slow floating camera movement.
-              </p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Sound Direction</p>
-              <p className="mt-2 text-[1rem] leading-[1.62] text-[var(--color-ink-soft)]">
-                Ambient, gentle piano, and soft cinematic beds. Emotional but calm, closer to
-                contemplative film than social hype edits.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section id="audience-engine" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 03</p>
-          <h2 className="section-title mt-2">Audience Engine</h2>
-
-          <div className="mt-7 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-            <article className="surface-panel">
-              <p className="panel-kicker">Layer 1 Foundation</p>
-              <h3 className="panel-title">Audience first. Everything else compounds from this.</h3>
-              <p className="mt-4 text-[1rem] leading-[1.62] text-[var(--color-ink-soft)]">
-                Revenue is near zero at the beginning, but attention capital is the engine that
-                powers every later layer in the business.
-              </p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Growth Path</p>
-              <div className="mt-3 flex flex-wrap items-center gap-2 text-[1.02rem] md:text-[1.12rem]">
-                <span className="path-chip">10k</span>
-                <span className="path-arrow">→</span>
-                <span className="path-chip">100k</span>
-                <span className="path-arrow">→</span>
-                <span className="path-chip">1M</span>
-              </div>
-              <p className="mt-4 text-[0.98rem] leading-[1.58] text-[var(--color-ink-soft)]">
-                The lever is repeatable formats plus consistent identity, not random posting.
-              </p>
-            </article>
-          </div>
-
-          <div className="mt-5 surface-panel">
-            <p className="panel-kicker">Platforms</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <span className="signal-chip">Instagram</span>
-              <span className="signal-chip">YouTube</span>
-              <span className="signal-chip">Newsletter</span>
-              <span className="signal-chip">Short-form Video</span>
-              <span className="signal-chip">Website</span>
-            </div>
-          </div>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <article className="surface-panel">
-              <p className="panel-kicker">Attraction Pillars</p>
-              <ul className="mt-3 space-y-2 text-[1rem] leading-[1.58] text-[var(--color-ink-soft)]">
-                <li>Curiosity about existence</li>
-                <li>Philosophical ideas</li>
-                <li>Joy of life</li>
-                <li>Exploration</li>
-                <li>Worldly mystics: Einstein, Jung, Cohen, Bourdain, da Vinci</li>
-              </ul>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Content Rhythm</p>
-              <ul className="mt-3 space-y-2 text-[1rem] leading-[1.58] text-[var(--color-ink-soft)]">
-                <li>2 reels/day: one philosophy, one joy-of-life</li>
-                <li>Every 5 to 7 reels: direct follow invitation</li>
-                <li>Target output for 60 days: 120 reels</li>
-                <li>Expected profile: 90 normal, 25 good, 5 viral</li>
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <section id="format-system" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 04</p>
-          <h2 className="section-title mt-2">Reel Format System</h2>
-          <p className="mt-3 max-w-[70ch] text-[1.04rem] leading-[1.66] text-[var(--color-ink-soft)]">
-            Core operating rule: use recurring formats so distribution compounds and the account is
-            immediately recognizable in-feed.
-          </p>
-
-          <div className="mt-7 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
-            <article className="format-card">
-              <Image src="/editorial/references/cosmic-style.png" alt="Worldly Mystics" width={1536} height={1024} className="format-image" />
-              <div className="format-body">
-                <p className="panel-kicker">Authority + Philosophy</p>
-                <h3 className="panel-title">Worldly Mystics</h3>
-                <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Hook → existential observation → person reveal → closing insight.</p>
-              </div>
-            </article>
-
-            <article className="format-card">
-              <Image src="/editorial/ocean-light.png" alt="Joy of Being Alive" width={1536} height={1024} className="format-image" />
-              <div className="format-body">
-                <p className="panel-kicker">Most Viral Emotion</p>
-                <h3 className="panel-title">Joy of Being Alive</h3>
-                <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Simple statement → joyful micro-moments → reflective close.</p>
-              </div>
-            </article>
-
-            <article className="format-card">
-              <Image src="/editorial/references/quiet-philosophy-style.png" alt="Nobody Talks About This" width={1536} height={1024} className="format-image" />
-              <div className="format-body">
-                <p className="panel-kicker">Curiosity + Relatability</p>
-                <h3 className="panel-title">Nobody Talks About This</h3>
-                <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Hook → modern life observation → philosophical reframe.</p>
-              </div>
-            </article>
-
-            <article className="format-card">
-              <Image src="/editorial/references/travel-doc-style.png" alt="Micro Stories" width={1536} height={1024} className="format-image" />
-              <div className="format-body">
-                <p className="panel-kicker">Narrative Engagement</p>
-                <h3 className="panel-title">Micro Stories</h3>
-                <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Short story → unexpected turn → philosophical reflection.</p>
-              </div>
-            </article>
-
-            <article className="format-card">
-              <Image src="/editorial/great-mystery-sky.png" alt="Quiet Questions" width={1536} height={1024} className="format-image" />
-              <div className="format-body">
-                <p className="panel-kicker">Comments + Saves</p>
-                <h3 className="panel-title">Quiet Questions</h3>
-                <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Simple existential question → minimal frame → pause.</p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="prompt-system" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 05</p>
-          <h2 className="section-title mt-2">Prompt + Production System</h2>
-
-          <div className="mt-7 grid gap-4 lg:grid-cols-[1.08fr_0.92fr]">
-            <article className="surface-panel">
-              <p className="panel-kicker">Universal Style Prompt</p>
-              <code className="prompt-block mt-3">
-                cinematic documentary style, warm natural lighting, golden hour sunlight, shallow
-                depth of field, soft film grain, anamorphic lens look, dreamy but realistic,
-                vibrant natural colors, sense of wonder and curiosity, terrence malick style
-                cinematography, slow gentle camera movement
-              </code>
-            </article>
-
-            <article className="surface-panel">
-              <p className="panel-kicker">Prompt Template</p>
-              <ol className="mt-3 space-y-2 text-[1rem] leading-[1.6] text-[var(--color-ink-soft)]">
-                <li>1. Scene description</li>
-                <li>2. Visual atmosphere</li>
-                <li>3. Camera style</li>
-              </ol>
-              <p className="mt-4 text-[0.98rem] leading-[1.56] text-[var(--color-ink-soft)]">
-                Operational rule: append the universal style prompt to preserve visual consistency
-                across formats.
-              </p>
-            </article>
-          </div>
-
-          <div className="mt-5 surface-panel overflow-x-auto">
-            <p className="panel-kicker">Weekly Production Matrix</p>
-            <table className="editorial-table mt-3 min-w-[640px]">
-              <thead>
-                <tr>
-                  <th>Day</th>
-                  <th>Reel 1</th>
-                  <th>Reel 2</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Mon</td><td>Einstein</td><td>Joy montage</td></tr>
-                <tr><td>Tue</td><td>Jung</td><td>Sailing sunset</td></tr>
-                <tr><td>Wed</td><td>Bourdain</td><td>Street food</td></tr>
-                <tr><td>Thu</td><td>Da Vinci</td><td>Travel moment</td></tr>
-                <tr><td>Fri</td><td>Cohen</td><td>Quiet reflection</td></tr>
-                <tr><td>Sat</td><td>Question reel</td><td>Animals</td></tr>
-                <tr><td>Sun</td><td>Micro story</td><td>Nature</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-5 surface-panel">
-            <p className="panel-kicker">60-Day Output Forecast</p>
-            <p className="mt-2 text-[1rem] leading-[1.58] text-[var(--color-ink-soft)]">120 reels total from a 2 reels/day cadence.</p>
-            <div className="mt-4 space-y-3">
-              <div>
-                <div className="stack-row"><span>Normal reels</span><span>90</span></div>
-                <div className="stack-track"><span style={{ width: "75%" }} /></div>
-              </div>
-              <div>
-                <div className="stack-row"><span>Good reels</span><span>25</span></div>
-                <div className="stack-track"><span style={{ width: "21%" }} /></div>
-              </div>
-              <div>
-                <div className="stack-row"><span>Viral reels</span><span>5</span></div>
-                <div className="stack-track"><span style={{ width: "10%" }} /></div>
-              </div>
             </div>
           </div>
         </section>
 
-        <section id="studio-blueprint" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 06</p>
-          <h2 className="section-title mt-2">Philosophy Studio Blueprint</h2>
+        {/* ════════════════════════════════════
+            CONTENTS
+            ════════════════════════════════════ */}
+        <section id="contents" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <div className="toc-section">
+                <p className="t-label">Navigation</p>
+                <h2 className="t-display mt-3">Contents</h2>
+                <p className="t-lead mt-4 max-w-[54ch]">
+                  Two parts: the strategic vision for investors and advisors, and the
+                  founder&apos;s operational playbook for execution.
+                </p>
 
-          <article className="surface-panel mt-7">
-            <h3 className="panel-title">Do not build isolated products. Build one philosophy studio.</h3>
-            <p className="mt-3 max-w-[70ch] text-[1rem] leading-[1.62] text-[var(--color-ink-soft)]">
-              Apps are one expression of the brand. The full model compounds through media,
-              products, community, and experiences.
-            </p>
-          </article>
-
-          <div className="ecosystem-grid mt-5">
-            <div className="eco-node eco-center brand-wordmark">The Great Mystery</div>
-            <div className="eco-node">Media</div>
-            <div className="eco-node">Apps</div>
-            <div className="eco-node">Courses</div>
-            <div className="eco-node">Community</div>
-            <div className="eco-node">Experiences</div>
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <article className="surface-panel">
-              <p className="panel-kicker">Most Creator Paths</p>
-              <p className="mt-2 text-[1.05rem] leading-[1.6] text-[var(--color-ink-soft)]">content → sponsorships</p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker brand-wordmark">Great Mystery Advantage</p>
-              <p className="mt-2 text-[1.05rem] leading-[1.6] text-[var(--color-ink-soft)]">content → apps → products → experiences</p>
-            </article>
-          </div>
-
-          <div className="mt-6 grid gap-3 md:grid-cols-3">
-            <article className="surface-panel">
-              <p className="panel-kicker">Layer 1</p>
-              <h3 className="panel-title">Audience</h3>
-              <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Attention engine.</p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Layer 2</p>
-              <h3 className="panel-title">Apps</h3>
-              <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Tools for living the mystery.</p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Layer 3</p>
-              <h3 className="panel-title">Digital Products</h3>
-              <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">High margin learning systems.</p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Layer 4</p>
-              <h3 className="panel-title">Membership</h3>
-              <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">
-                <span className="brand-wordmark">Great Mystery</span> Society.
-              </p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Layer 5</p>
-              <h3 className="panel-title">Physical Objects</h3>
-              <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Lifestyle artifacts.</p>
-            </article>
-            <article className="surface-panel">
-              <p className="panel-kicker">Layer 6</p>
-              <h3 className="panel-title">Experiences</h3>
-              <p className="mt-2 text-[0.95rem] text-[var(--color-ink-soft)]">Retreats, workshops, sailing.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="business-architecture" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 07</p>
-          <h2 className="section-title mt-2">Business Architecture</h2>
-
-          <div className="mt-7 grid gap-4 lg:grid-cols-[1.04fr_0.96fr]">
-            <article className="surface-panel overflow-x-auto">
-              <p className="panel-kicker">Layer 2 App Portfolio</p>
-              <div className="app-chip-row mt-3">
-                <div className="app-chip">
-                  <img src="https://thegreatmystery.one/onebody.png" alt="One Body app icon" />
-                  <span>One Body</span>
-                </div>
-                <div className="app-chip">
-                  <img src="https://thegreatmystery.one/onemind.png" alt="One Mind app icon" />
-                  <span>One Mind</span>
+                <div className="mt-10 grid gap-12 lg:grid-cols-[1.2fr_1fr]">
+                  <div>
+                    <p className="toc-part-label">Part One · The Vision</p>
+                    <ol className="toc-list">
+                      <li><a href="#manifesto"><span className="toc-num">01</span><span className="toc-title">Manifesto</span></a></li>
+                      <li><a href="#philosophy"><span className="toc-num">02</span><span className="toc-title">Philosophy & Principles</span></a></li>
+                      <li><a href="#visual"><span className="toc-num">03</span><span className="toc-title">Visual Language</span></a></li>
+                      <li><a href="#studio"><span className="toc-num">04</span><span className="toc-title">Philosophy Studio Blueprint</span></a></li>
+                      <li><a href="#business"><span className="toc-num">05</span><span className="toc-title">Business Architecture</span></a></li>
+                      <li><a href="#revenue"><span className="toc-num">06</span><span className="toc-title">Revenue Stack</span></a></li>
+                      <li><a href="#roadmap"><span className="toc-num">07</span><span className="toc-title">Roadmap</span></a></li>
+                      <li><a href="#vision"><span className="toc-num">08</span><span className="toc-title">Vision & Founder Edge</span></a></li>
+                    </ol>
+                  </div>
+                  <div>
+                    <p className="toc-part-label">Part Two · Playbook</p>
+                    <ol className="toc-list">
+                      <li><a href="#voice"><span className="toc-num">09</span><span className="toc-title">Brand Voice & Tone</span></a></li>
+                      <li><a href="#audience"><span className="toc-num">10</span><span className="toc-title">Audience Engine</span></a></li>
+                      <li><a href="#formats"><span className="toc-num">11</span><span className="toc-title">Reel Format System</span></a></li>
+                      <li><a href="#prompts"><span className="toc-num">12</span><span className="toc-title">AI Prompt System</span></a></li>
+                      <li><a href="#posting"><span className="toc-num">13</span><span className="toc-title">Posting & Production</span></a></li>
+                    </ol>
+                  </div>
                 </div>
               </div>
-              <table className="editorial-table mt-3 min-w-[480px]">
-                <thead>
-                  <tr>
-                    <th>App</th>
-                    <th>Role</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>One Body</td><td>Physical wellbeing</td></tr>
-                  <tr><td>One Mind</td><td>Mental clarity</td></tr>
-                  <tr><td>One Soul</td><td>Spiritual reflection</td></tr>
-                  <tr><td>Dream App</td><td>Subconscious exploration</td></tr>
-                </tbody>
-              </table>
-              <p className="mt-4 text-[0.96rem] leading-[1.56] text-[var(--color-ink-soft)]">
-                Subscription model: $5 to $10/month. Example baseline: 10,000 users × $6/month =
-                $60,000/month or $720,000/year.
-              </p>
-            </article>
-
-            <div className="space-y-4">
-              <article className="surface-panel">
-                <p className="panel-kicker">Layer 3 · Digital Products</p>
-                <p className="mt-2 text-[0.96rem] text-[var(--color-ink-soft)]">Courses, journaling systems, guided explorations, challenges.</p>
-                <p className="stat-pill mt-3">$79 × 5,000 buyers = $395,000</p>
-              </article>
-              <article className="surface-panel">
-                <p className="panel-kicker">Layer 4 · Membership</p>
-                <p className="mt-2 text-[0.96rem] text-[var(--color-ink-soft)]">Live salons, philosophy nights, guest speakers, community rituals.</p>
-                <p className="stat-pill mt-3">5,000 members × $12 = $60,000/month</p>
-              </article>
-              <article className="surface-panel">
-                <p className="panel-kicker">Layer 5 + 6 · Products + Experiences</p>
-                <p className="mt-2 text-[0.96rem] text-[var(--color-ink-soft)]">Objects: journals, posters, decks, kits. Experiences: retreats, sailing trips, gatherings.</p>
-                <p className="stat-pill mt-3">$16,000 launch · $40,000 retreat weekend</p>
-              </article>
             </div>
           </div>
         </section>
 
-        <section id="revenue-stack" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 08</p>
-          <h2 className="section-title mt-2">Revenue Stack (Target Model)</h2>
+        <Spread
+          src="https://thegreatmystery.one/bgnobottom.jpg"
+          alt="Sailboat visual — the editorial world of The Great Mystery"
+          caption="The Great Mystery visual world — cinematic wonder, warm curiosity, human life inside a vast mysterious universe."
+          remote
+        />
 
-          <div className="mt-7 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-            <article className="surface-panel">
-              <p className="panel-kicker">Mature Monthly Baseline</p>
-              <table className="editorial-table mt-3">
-                <thead>
-                  <tr><th>Stream</th><th>Monthly</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Apps</td><td>$80,000</td></tr>
-                  <tr><td>Membership</td><td>$50,000</td></tr>
-                  <tr><td>Courses</td><td>$40,000</td></tr>
-                  <tr><td>Products</td><td>$20,000</td></tr>
-                  <tr><td>Events</td><td>$15,000</td></tr>
-                  <tr><td>Total</td><td>$205,000/month</td></tr>
-                </tbody>
-              </table>
-              <p className="mt-4 text-[0.98rem] leading-[1.58] text-[var(--color-ink-soft)]">Annualized baseline: approximately $2.46M/year.</p>
-            </article>
+        {/* ════════════════════════════════════════════
+            PART ONE — THE VISION
+            ════════════════════════════════════════════ */}
 
-            <article className="surface-panel">
-              <p className="panel-kicker">Investment Logic</p>
-              <h3 className="panel-title">A compounding ecosystem, not a single revenue bet.</h3>
-              <p className="mt-3 text-[1rem] leading-[1.62] text-[var(--color-ink-soft)]">
-                This stack is credible because each layer strengthens the others: audience fuels app
-                adoption, apps deepen trust, trust enables community and products, and all of it
-                raises demand for high-impact experiences.
+        {/* ── Ch 01 · Manifesto ── */}
+        <section id="manifesto" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="01" title="Manifesto" />
+            </div>
+            <div className="content-w space-y-6">
+              <p className="t-body">
+                Existence itself remains a mystery.
               </p>
-              <div className="mt-4 rounded-[12px] border border-[var(--color-line)] bg-[#fff8ec] p-4">
-                <p className="text-[0.95rem] leading-[1.56] text-[var(--color-ink-soft)]">
-                  Biggest risk: building too many layers at once.
+              <p className="t-body">
+                Human civilization has accumulated knowledge for thousands of years. We have mapped the stars,
+                decoded the genome, built machines that think and networks that connect the entire planet.
+              </p>
+              <p className="t-body">
+                And yet the most fundamental question remains unanswered.
+              </p>
+            </div>
+
+            <PullQuote>Why is there something rather than nothing?</PullQuote>
+
+            <div className="content-w space-y-6">
+              <p className="t-body">
+                Every person wakes each morning inside a reality that no one fully understands. We
+                experience consciousness, love, curiosity, fear, beauty, time, and death — but the
+                nature of existence itself remains hidden.
+              </p>
+              <p className="t-body">
+                Most of modern culture tries to replace mystery with certainty.
+              </p>
+              <p className="t-body">
+                The Great Mystery takes the opposite view.
+              </p>
+              <p className="t-body">
+                Mystery is not a problem to solve. Mystery is the condition that makes life meaningful.
+              </p>
+              <p className="t-body">
+                It is the unknown that creates curiosity. It is uncertainty that creates adventure.
+                It is the limits of knowledge that create wonder.
+              </p>
+            </div>
+
+            <PullQuote>Life is not a puzzle to finish, but an experience to explore.</PullQuote>
+          </div>
+        </section>
+
+        {/* ── Ch 02 · Philosophy ── */}
+        <section id="philosophy" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="02" title="Philosophy & Principles" />
+            </div>
+            <div className="content-w space-y-6">
+              <p className="t-body">
+                At the center of this project is a simple idea: everything is fundamentally mysterious.
+                No matter how much humanity discovers, existence itself remains beyond complete explanation.
+              </p>
+              <p className="t-body">
+                This realization can lead in two different directions. One response is fear.
+                Another response is curiosity. The Great Mystery chooses curiosity.
+              </p>
+              <p className="t-body">
+                When mystery is embraced rather than feared, life becomes an open landscape of exploration.
+              </p>
+            </div>
+
+            <div className="wide-w mt-14">
+              <p className="t-label mb-6">The Framework</p>
+              <div className="grid gap-5 md:grid-cols-3">
+                <div className="card card-warm">
+                  <h3 className="t-sub">Body</h3>
+                  <p className="t-body mt-3">
+                    A healthy body is the foundation of experience. Strength, movement, and
+                    vitality allow us to fully participate in the world.
+                  </p>
+                </div>
+                <div className="card card-warm">
+                  <h3 className="t-sub">Mind</h3>
+                  <p className="t-body mt-3">
+                    A clear mind enables reflection. It allows us to ask questions, examine ideas,
+                    and observe the world with curiosity rather than distraction.
+                  </p>
+                </div>
+                <div className="card card-warm">
+                  <h3 className="t-sub">Soul</h3>
+                  <p className="t-body mt-3">
+                    The soul represents meaning, wonder, and connection. It is the part of
+                    human experience that asks deeper questions.
+                  </p>
+                </div>
+              </div>
+              <p className="t-body mt-8 content-w">
+                Healthy body supports a clear mind. A clear mind supports a healthy soul.
+                Together they allow people to experience life fully.
+              </p>
+            </div>
+
+            <div className="wide-w mt-14">
+              <p className="t-label mb-5">Core Principles</p>
+              <ul className="ed-list space-y-2 text-[1.05rem]">
+                <li>Curiosity over certainty</li>
+                <li>Exploration over explanation</li>
+                <li>Joy in everyday life</li>
+                <li>Embracing mystery rather than fearing it</li>
+                <li>Balancing intellect, creativity, and adventure</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <Spread
+          src="/editorial/ocean-light.svg"
+          alt="Ocean light — calm rhythm and visual continuity"
+          caption="Human life inside a vast mysterious universe"
+        />
+
+        {/* ── Ch 03 · Visual Language ── */}
+        <section id="visual" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="03" title="Visual Language" />
+            </div>
+            <div className="content-w">
+              <p className="t-lead">
+                The visual world of The Great Mystery should feel like a philosopher traveling
+                the earth and noticing small, beautiful mysteries everywhere.
+              </p>
+            </div>
+
+            <div className="wide-w mt-14">
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="card card-warm">
+                  <p className="t-label">Core Aesthetic</p>
+                  <h3 className="t-sub mt-3">Dreamlike realism, warm curiosity, cinematic wonder.</h3>
+                  <ul className="ed-list mt-5 space-y-1 t-body">
+                    <li>Terrence Malick atmosphere — poetic natural light</li>
+                    <li>Travel documentary intimacy — human detail, real places</li>
+                    <li>Cosmic imagery with grounded human life</li>
+                    <li>Warm Mediterranean texture and light</li>
+                  </ul>
+                </div>
+                <div className="card card-warm">
+                  <p className="t-label">Mood Rule</p>
+                  <h3 className="t-sub mt-3">A quiet moment of wonder. Never a lecture.</h3>
+                  <p className="t-body mt-5">
+                    Warm, vibrant, life-affirming. Soft film grain, natural light, shallow depth
+                    of field, slow camera movement. 35mm film look with anamorphic lens and bokeh.
+                  </p>
+                  <p className="t-body mt-4">
+                    <strong>Avoid:</strong> dark motivational styling, black backgrounds, neon cyberpunk,
+                    fast cuts, hyper editing.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="wide-w mt-14">
+              <p className="t-label mb-5">Color Palette</p>
+              <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                  <p className="t-caption mb-3">Primary</p>
+                  <div className="swatch-row"><span className="swatch-dot" style={{ background: "#F7B500" }} /><span className="t-body">Golden Sunlight · #F7B500</span></div>
+                  <div className="swatch-row"><span className="swatch-dot" style={{ background: "#2DBCCB" }} /><span className="t-body">Turquoise Sea · #2DBCCB</span></div>
+                  <div className="swatch-row"><span className="swatch-dot" style={{ background: "#2C5AA0" }} /><span className="t-body">Deep Blue Sky · #2C5AA0</span></div>
+                  <div className="swatch-row"><span className="swatch-dot" style={{ background: "#D69C77" }} /><span className="t-body">Warm Skin Tones · #D69C77</span></div>
+                </div>
+                <div>
+                  <p className="t-caption mb-3">Accent</p>
+                  <div className="swatch-row"><span className="swatch-dot" style={{ background: "#FF8B3E" }} /><span className="t-body">Orange Sunset · #FF8B3E</span></div>
+                  <div className="swatch-row"><span className="swatch-dot" style={{ background: "#6E4AC5" }} /><span className="t-body">Cosmic Purple · #6E4AC5</span></div>
+                  <div className="swatch-row"><span className="swatch-dot" style={{ background: "#1E9B6F" }} /><span className="t-body">Emerald Green · #1E9B6F</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="wide-w mt-14">
+              <p className="t-label mb-5">Recurring Visual Elements</p>
+              <div className="grid gap-5 md:grid-cols-3">
+                <div className="card card-warm">
+                  <p className="t-caption mb-3">Nature</p>
+                  <p className="t-body">Ocean, waves, sunsets, mountains, forests, animals</p>
+                </div>
+                <div className="card card-warm">
+                  <p className="t-caption mb-3">Human Life</p>
+                  <p className="t-body">Coffee, travel, sailing, walking, conversations</p>
+                </div>
+                <div className="card card-warm">
+                  <p className="t-caption mb-3">Cosmic</p>
+                  <p className="t-body">Stars, galaxies, night sky</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Ch 04 · Philosophy Studio Blueprint ── */}
+        <section id="studio" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="04" title="Philosophy Studio Blueprint" />
+            </div>
+            <div className="content-w">
+              <p className="t-lead">
+                Do not think: I am building apps. Think: I am building a philosophy studio.
+                Everything reinforces everything else.
+              </p>
+            </div>
+
+            <div className="wide-w mt-14">
+              <p className="t-label mb-5">The Six-Layer Stack</p>
+              <div className="grid gap-4 md:grid-cols-3">
+                {[
+                  { layer: "Layer 1", title: "Audience", note: "The foundation engine that powers everything." },
+                  { layer: "Layer 2", title: "Apps", note: "Tools for living the mystery. Structural advantage." },
+                  { layer: "Layer 3", title: "Digital Products", note: "Courses, journals, explorations. High margin." },
+                  { layer: "Layer 4", title: "Membership", note: "Live salons, philosophy nights, community." },
+                  { layer: "Layer 5", title: "Physical Objects", note: "Journals, posters, card decks, clothing." },
+                  { layer: "Layer 6", title: "Experiences", note: "Retreats, sailing trips, gatherings." }
+                ].map((item) => (
+                  <div key={item.layer} className="card card-warm">
+                    <p className="t-label">{item.layer}</p>
+                    <h3 className="t-sub mt-2">{item.title}</h3>
+                    <p className="t-body mt-2 text-[1.05rem]">{item.note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="wide-w mt-14">
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="card card-warm">
+                  <p className="t-label">Most Creator Paths</p>
+                  <p className="t-sub mt-3">Content → Sponsorships</p>
+                  <p className="t-body mt-2 text-[1.05rem]">
+                    Revenue capped by ad rates and brand deals. No compounding.
+                  </p>
+                </div>
+                <div className="card card-gold">
+                  <p className="t-label">The Great Mystery Path</p>
+                  <p className="t-sub mt-3">Content → Apps → Products → Experiences</p>
+                  <p className="t-body mt-2 text-[1.05rem]">
+                    Each layer strengthens the others. Audience fuels apps, apps deepen trust,
+                    trust enables community and products, demand rises for experiences.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Spread
+          src="/editorial/cinematic-frame.svg"
+          alt="Cinematic frame — documentary atmosphere"
+          caption="Apps are one expression of the studio. The full system compounds through media, products, community, and experiences."
+        />
+
+        {/* ── Ch 05 · Business Architecture ── */}
+        <section id="business" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="05" title="Business Architecture" />
+            </div>
+            <div className="content-w">
+              <p className="t-lead">
+                The audience (Layer 1) is the foundation — covered in the Studio Blueprint above
+                and the Playbook below. Here are the five revenue-generating layers that build on
+                that foundation, each strengthening the others.
+              </p>
+            </div>
+
+            <div className="wide-w mt-10">
+              <div className="card card-warm">
+                <p className="t-label">Apps — The Structural Advantage</p>
+                <h3 className="t-sub mt-2">
+                  Engineering leverage that most creators do not have.
+                </h3>
+                <p className="t-body mt-3">
+                  Subscription range: $5–$10/month. Example baseline: 10,000 users × $6/month =
+                  $60,000/month ($720,000/year).
+                </p>
+                <div className="mt-5 overflow-x-auto">
+                  <table className="ed-table">
+                    <thead>
+                      <tr>
+                        <th>App</th>
+                        <th>Role</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>One Body</td><td>Physical wellbeing</td></tr>
+                      <tr><td>One Mind</td><td>Mental clarity</td></tr>
+                      <tr><td>One Soul</td><td>Spiritual reflection</td></tr>
+                      <tr><td>Dream App</td><td>Subconscious exploration</td></tr>
+                      <tr><td>Field Guide</td><td>Curiosity about the world</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div className="wide-w mt-8">
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="card card-warm">
+                  <p className="t-label">Digital Products</p>
+                  <p className="t-body mt-3">
+                    Courses, journaling systems, guided explorations, curiosity challenges, creative workshops.
+                  </p>
+                  <p className="mt-4 border-t border-[var(--ink-10)] pt-3 text-[1.05rem] font-medium">
+                    $79 × 5,000 buyers = $395,000
+                  </p>
+                  <p className="t-body text-[1rem]">Typical 90%+ margin.</p>
+                </div>
+                <div className="card card-warm">
+                  <p className="t-label">Membership</p>
+                  <p className="t-body mt-3">
+                    Live salons, philosophy nights, guest speakers, community rituals.
+                  </p>
+                  <p className="mt-4 border-t border-[var(--ink-10)] pt-3 text-[1.05rem] font-medium">
+                    5,000 members × $12/mo = $60,000/month
+                  </p>
+                  <p className="t-body text-[1rem]">Recurring and relationship-driven.</p>
+                </div>
+                <div className="card card-warm">
+                  <p className="t-label">Physical Objects</p>
+                  <p className="t-body mt-3">
+                    Journals, posters, philosophical card decks, exploration kits, clothing.
+                  </p>
+                  <p className="mt-4 border-t border-[var(--ink-10)] pt-3 text-[1.05rem] font-medium">
+                    20k followers × 2% × $40 = $16,000 launch
+                  </p>
+                  <p className="t-body text-[1rem]">Lifestyle signal and brand artifacts.</p>
+                </div>
+                <div className="card card-warm">
+                  <p className="t-label">Experiences</p>
+                  <p className="t-body mt-3">
+                    Retreats, sailing trips, philosophy gatherings, creative workshops.
+                  </p>
+                  <p className="mt-4 border-t border-[var(--ink-10)] pt-3 text-[1.05rem] font-medium">
+                    $2,000 retreat × 20 people = $40,000 weekend
+                  </p>
+                  <p className="t-body text-[1rem]">Highest impact, premium positioning.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Ch 06 · Revenue Stack ── */}
+        <section id="revenue" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="06" title="Revenue Stack" />
+            </div>
+            <div className="content-w">
+              <p className="t-lead">
+                A compounding ecosystem, not a single revenue bet. Each layer strengthens the others.
+              </p>
+            </div>
+
+            <div className="wide-w mt-10">
+              <p className="t-label mb-4">Mature Monthly Baseline</p>
+              <div className="overflow-x-auto">
+                <table className="ed-table">
+                  <thead>
+                    <tr>
+                      <th>Stream</th>
+                      <th>Monthly</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Apps</td><td>$80,000</td></tr>
+                    <tr><td>Membership</td><td>$50,000</td></tr>
+                    <tr><td>Courses</td><td>$40,000</td></tr>
+                    <tr><td>Products</td><td>$20,000</td></tr>
+                    <tr><td>Events</td><td>$15,000</td></tr>
+                    <tr className="row-total"><td>Total</td><td>$205,000 / month</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="t-body mt-6">
+                Annualized baseline: approximately <strong>$2.46M/year</strong>.
+              </p>
+            </div>
+
+            <div className="wide-w mt-14">
+              <div className="card card-gold">
+                <p className="t-label">Investment Logic</p>
+                <h3 className="t-sub mt-2">
+                  This stack is credible because each layer feeds the next.
+                </h3>
+                <p className="t-body mt-4">
+                  Audience fuels app adoption. Apps deepen trust. Trust enables community and products.
+                  All of it raises demand for high-impact experiences. Many lifestyle brands scale well
+                  beyond these numbers once the ecosystem compounds.
+                </p>
+                <p className="t-body mt-4">
+                  <strong>Biggest risk:</strong> building too many layers at once. The roadmap addresses
+                  this with strict sequencing.
                 </p>
               </div>
-            </article>
+            </div>
           </div>
         </section>
 
-        <section id="roadmap" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 09</p>
-          <h2 className="section-title mt-2">Sequenced Roadmap</h2>
+        {/* ── Ch 07 · Roadmap ── */}
+        <section id="roadmap" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="07" title="Roadmap" />
+            </div>
+            <div className="content-w">
+              <p className="t-lead">
+                Strict sequencing. Each phase must prove itself before the next begins.
+              </p>
+            </div>
 
-          <ol className="journey-track mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            <li className="journey-card">
-              <p className="panel-kicker">Phase 1</p>
-              <h3 className="panel-title">Audience</h3>
-              <p>Build recognizable formats and lock visual identity.</p>
-            </li>
-            <li className="journey-card">
-              <p className="panel-kicker">Phase 2</p>
-              <h3 className="panel-title">One Successful App</h3>
-              <p>Validate a profitable app with clear product-market fit.</p>
-            </li>
-            <li className="journey-card">
-              <p className="panel-kicker">Phase 3</p>
-              <h3 className="panel-title">Community</h3>
-              <p>Launch membership rituals, salons, and ongoing discussion spaces.</p>
-            </li>
-            <li className="journey-card">
-              <p className="panel-kicker">Phase 4</p>
-              <h3 className="panel-title">Products</h3>
-              <p>Expand into digital and physical products with strong margin.</p>
-            </li>
-            <li className="journey-card">
-              <p className="panel-kicker">Phase 5</p>
-              <h3 className="panel-title">Experiences</h3>
-              <p>Scale retreats, workshops, and travel-led gatherings.</p>
-            </li>
-          </ol>
+            <div className="wide-w mt-10">
+              <div className="roadmap-track">
+                {[
+                  {
+                    phase: "Phase 1 — Audience",
+                    detail: "Build recognizable formats and lock visual identity. Grow from ~500 to 10k+ followers with consistent daily publishing."
+                  },
+                  {
+                    phase: "Phase 2 — One Successful App",
+                    detail: "Launch and validate one profitable app with clear product-market fit. Prove that audience converts to paying users."
+                  },
+                  {
+                    phase: "Phase 3 — Community",
+                    detail: "Launch membership layer through salons, philosophy nights, guest speakers, and recurring discussion spaces."
+                  },
+                  {
+                    phase: "Phase 4 — Products",
+                    detail: "Expand into digital and physical products with strong margins. Courses, journals, card decks, clothing."
+                  },
+                  {
+                    phase: "Phase 5 — Experiences",
+                    detail: "Scale high-impact retreats, workshops, sailing trips, and travel-based gatherings."
+                  }
+                ].map((item) => (
+                  <div key={item.phase} className="roadmap-node">
+                    <h3 className="t-sub">{item.phase}</h3>
+                    <p className="t-body mt-2">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-          <div className="mt-6 surface-panel">
-            <p className="panel-kicker">First Milestone</p>
-            <h3 className="panel-title">10,000 followers + one profitable app</h3>
-            <p className="mt-3 text-[1rem] leading-[1.62] text-[var(--color-ink-soft)]">
-              Once this threshold exists, community, products, and experiences become much easier to
-              scale.
-            </p>
+            <div className="wide-w mt-10">
+              <div className="card card-gold">
+                <p className="t-label">First Milestone</p>
+                <p className="t-sub mt-2">10,000 followers + one profitable app</p>
+                <p className="t-body mt-3">
+                  Once this milestone exists, community, products, and experiences become
+                  significantly easier to launch and scale.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="vision" className="brand-surface reveal-in p-6 md:p-10">
-          <p className="chapter-eyebrow">Chapter 10</p>
-          <h2 className="section-title mt-2">Vision + Founder Edge</h2>
+        <Spread
+          src="/editorial/great-mystery-sky.svg"
+          alt="Expansive sky — human life inside a vast mysterious universe"
+          caption="The mystery of life is not something far away. It is right here."
+        />
 
-          <div className="mt-7 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-            <article className="surface-panel">
-              <h3 className="panel-title">Build a global philosophy lifestyle brand.</h3>
-              <p className="mt-4 text-[1rem] leading-[1.64] text-[var(--color-ink-soft)]">
-                The long-term aim is to create media, tools, products, and experiences that help
-                people feel more curious, more alive, and more connected to existence.
+        {/* ── Ch 08 · Vision & Founder Edge ── */}
+        <section id="vision" className="doc-section">
+          <div className="page-w">
+            <div className="wide-w">
+              <ChapterHead num="08" title="Vision & Founder Edge" />
+            </div>
+            <div className="content-w space-y-6">
+              <p className="t-body">
+                The long-term vision is to build a global philosophy lifestyle brand.
               </p>
-              <p className="mt-4 text-[1rem] leading-[1.64] text-[var(--color-ink-soft)]">
-                Core founder advantage is rare: engineering ability, philosophical instinct,
-                storytelling sensitivity, and an exploration-centered lifestyle.
+              <p className="t-body">
+                The goal is not only to distribute content but to inspire people to explore life
+                with curiosity, joy, and wonder — through media, tools, products, and shared experiences.
               </p>
-            </article>
-            <figure className="reference-card">
-              <Image src="/editorial/great-mystery-sky.png" alt="Open sky representing expansive brand vision" width={1536} height={1024} className="h-auto w-full" />
-              <figcaption>Human life inside a vast mysterious universe.</figcaption>
-            </figure>
+            </div>
+
+            <PullQuote>The Great Mystery exists to remind people that life itself is the greatest mystery.</PullQuote>
+
+            <div className="wide-w mt-8">
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="card card-warm">
+                  <p className="t-label">Founder Advantage</p>
+                  <p className="t-body mt-3">
+                    A rare combination: engineering ability, philosophical instinct, storytelling
+                    sensitivity, international perspective, and an exploration-centered lifestyle.
+                  </p>
+                </div>
+                <div className="card card-warm">
+                  <p className="t-label">Long-Term Structure</p>
+                  <p className="t-body mt-3">
+                    Media · Apps · Courses · Community · Experiences — a single philosophy studio
+                    under one company, one strategic direction.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <p className="mt-8 text-xs uppercase tracking-[0.13em] text-[var(--color-ink-soft)]">
-            <a href="#top" className="underline decoration-[var(--color-accent)] decoration-2 underline-offset-4 hover:text-[var(--color-ink)]">Back to top</a>
+        {/* ════════════════════════════════════════════
+            PART TWO — FOUNDER'S PLAYBOOK
+            ════════════════════════════════════════════ */}
+        <div id="playbook" className="part-divider">
+          <p className="part-label">Part Two</p>
+          <h2>Founder&apos;s Playbook</h2>
+          <p>
+            Operational systems, content formats, prompt engineering, and daily production
+            cadence for building and growing The Great Mystery.
           </p>
-        </section>
+        </div>
+
+        <div className="playbook-bg">
+          {/* ── Ch 09 · Brand Voice & Tone ── */}
+          <section id="voice" className="doc-section">
+            <div className="page-w">
+              <div className="wide-w">
+                <ChapterHead num="09" title="Brand Voice & Tone" />
+              </div>
+              <div className="content-w">
+                <p className="t-lead">
+                  The voice of The Great Mystery is calm, reflective, and thoughtful.
+                  Captions should feel like short philosophical observations, not motivational slogans.
+                </p>
+              </div>
+
+              <div className="wide-w mt-10">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <div>
+                    <p className="t-label mb-4">Tone Characteristics</p>
+                    <ul className="ed-list space-y-2 text-[1.05rem]">
+                      <li>Calm</li>
+                      <li>Curious</li>
+                      <li>Reflective</li>
+                      <li>Intelligent</li>
+                      <li>Human</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="t-label mb-4">Avoid</p>
+                    <ul className="ed-list space-y-2 text-[1.05rem]">
+                      <li>&quot;GRIND HARD&quot; / &quot;NEVER GIVE UP&quot;</li>
+                      <li>Dark motivational style</li>
+                      <li>Corporate language</li>
+                      <li>Startup jargon</li>
+                      <li>SUCCESS MINDSET energy</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="wide-w mt-14">
+                <p className="t-label mb-5">High-Performing Hook Starters</p>
+                <div className="space-y-3">
+                  {[
+                    "One of the strangest things about being alive is…",
+                    "Some of the most brilliant minds believed this…",
+                    "Nobody talks about this, but…",
+                    "The older I get the more I realize…",
+                    "A fisherman once told me something…"
+                  ].map((hook) => (
+                    <div key={hook} className="card card-warm">
+                      <p className="t-body italic">&ldquo;{hook}&rdquo;</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="wide-w mt-14">
+                <p className="t-label mb-5">Good Caption Examples</p>
+                <div className="space-y-3">
+                  <div className="card card-gold">
+                    <p className="t-body italic">
+                      &ldquo;The strange thing about life is that we are inside the mystery, not outside it.&rdquo;
+                    </p>
+                  </div>
+                  <div className="card card-gold">
+                    <p className="t-body italic">
+                      &ldquo;Maybe the purpose of life is not to solve it, but to experience it.&rdquo;
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="content-w mt-10">
+                <p className="t-body">
+                  <strong>Most important rule:</strong> each piece should feel like a quiet moment of
+                  wonder, not a lecture.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Ch 10 · Audience Engine ── */}
+          <section id="audience" className="doc-section">
+            <div className="page-w">
+              <div className="wide-w">
+                <ChapterHead num="10" title="Audience Engine" />
+              </div>
+              <div className="content-w">
+                <p className="t-lead">
+                  Layer 1 is audience. Revenue is near zero at the beginning, but attention capital
+                  is the engine that powers every later layer in the business.
+                </p>
+              </div>
+
+              <div className="wide-w mt-10">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <div className="card card-warm">
+                    <p className="t-label">Platforms</p>
+                    <p className="t-body mt-3">Instagram · YouTube · Newsletter · Short-form Video · Website</p>
+                  </div>
+                  <div className="card card-warm">
+                    <p className="t-label">Growth Path</p>
+                    <p className="t-sub mt-3">10k → 100k → 1M</p>
+                    <p className="t-body mt-2 text-[1.05rem]">
+                      Recognizable formats plus consistent visual identity drive this curve.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="wide-w mt-8">
+                <div className="card card-warm">
+                  <p className="t-label">Attraction Pillars</p>
+                  <ul className="ed-list mt-4 space-y-2">
+                    <li>Curiosity about existence</li>
+                    <li>Philosophical ideas made accessible</li>
+                    <li>Joy of life — celebrating everyday beauty</li>
+                    <li>Exploration — travel, nature, new experiences</li>
+                    <li>Worldly mystics: Einstein, Jung, Cohen, Bourdain, da Vinci</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="content-w mt-10 space-y-5">
+                <p className="t-body">
+                  To grow from ~500 followers to 100k, consistency alone is not enough.
+                  Use repeatable content formats that the algorithm can recognize and distribute.
+                </p>
+                <p className="t-body">
+                  <strong>Biggest growth lever:</strong> consistency of visual identity. If every reel
+                  feels like it comes from the same world, recognition and follow conversion increase
+                  dramatically.
+                </p>
+              </div>
+
+              <div className="wide-w mt-14">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <div className="card card-warm">
+                    <p className="t-label">Motion Style</p>
+                    <p className="t-body mt-3">
+                      Slow, floating, gentle. Slow drone shots, slow walking, waves moving,
+                      wind in trees, boats rocking. A calm hypnotic rhythm.
+                    </p>
+                    <p className="t-body mt-3">
+                      <strong>Avoid:</strong> fast cuts, hyper editing, TikTok chaos.
+                    </p>
+                  </div>
+                  <div className="card card-warm">
+                    <p className="t-label">Sound Design</p>
+                    <p className="t-body mt-3">
+                      Ambient, piano, soft cinematic. Emotional but calm.
+                    </p>
+                    <p className="t-body mt-3">
+                      Reference moods: Ludovico Einaudi style, soft ambient synths, gentle piano.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Ch 11 · Reel Format System ── */}
+          <section id="formats" className="doc-section">
+            <div className="page-w">
+              <div className="wide-w">
+                <ChapterHead num="11" title="Reel Format System" />
+              </div>
+              <div className="content-w">
+                <p className="t-lead">
+                  Five repeatable formats optimized for authority, emotion, curiosity, story,
+                  and engagement. Viewers should instantly recognize what kind of reel they are seeing.
+                </p>
+              </div>
+
+              <div className="wide-w mt-10 space-y-8">
+                {/* Format 1 */}
+                <div className="card card-warm">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="t-sub">Worldly Mystics</h3>
+                    <span className="t-caption">Authority + Philosophy</span>
+                  </div>
+                  <p className="t-body mt-3">
+                    Short stories about historical figures who embraced curiosity about existence
+                    while living productive lives. Einstein, Jung, da Vinci, Cohen, Bourdain.
+                  </p>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <div>
+                      <p className="t-label mb-2">Structure</p>
+                      <ol className="ed-list space-y-1 text-[1.05rem]">
+                        <li>Hook — existential observation</li>
+                        <li>Reveal the person</li>
+                        <li>Closing philosophical insight</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <p className="t-label mb-2">Script Skeleton</p>
+                      <p className="t-body text-[1.05rem] italic">
+                        &ldquo;Some of the greatest minds in history were obsessed with the same question…
+                        Einstein once said the most beautiful thing we can experience is the mysterious.
+                        Maybe the goal of life is not to solve the mystery, but to live inside it.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Format 2 */}
+                <div className="card card-warm">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="t-sub">Joy of Being Alive</h3>
+                    <span className="t-caption">Viral Positivity</span>
+                  </div>
+                  <p className="t-body mt-3">
+                    Montages of beautiful everyday moments — sailing, coffee by the sea, sunsets,
+                    travel, animals, friendship — with reflective philosophical narration.
+                  </p>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <div>
+                      <p className="t-label mb-2">Structure</p>
+                      <ol className="ed-list space-y-1 text-[1.05rem]">
+                        <li>Simple philosophical statement</li>
+                        <li>Series of joyful micro-moments</li>
+                        <li>Closing reflection</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <p className="t-label mb-2">Visual Motifs</p>
+                      <p className="t-body text-[1.05rem]">
+                        Sailing at sunset, coffee by the sea, riding horses, waves crashing,
+                        laughter with friends, street food, cats sleeping, rain on windows.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Format 3 */}
+                <div className="card card-warm">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="t-sub">Nobody Talks About This</h3>
+                    <span className="t-caption">Curiosity + Relatability</span>
+                  </div>
+                  <p className="t-body mt-3">
+                    Observations about the strange nature of existence and modern life.
+                    Short reflections that make viewers pause.
+                  </p>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <div>
+                      <p className="t-label mb-2">Structure</p>
+                      <ol className="ed-list space-y-1 text-[1.05rem]">
+                        <li>Hook</li>
+                        <li>Observation about modern life</li>
+                        <li>Meaningful reframe</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <p className="t-label mb-2">Script Skeleton</p>
+                      <p className="t-body text-[1.05rem] italic">
+                        &ldquo;Nobody talks about how strange it is that we exist at all.
+                        We wake up, drink coffee, answer emails, while floating on a rock in space.
+                        Maybe the real problem is that we forget how mysterious it is.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Format 4 */}
+                <div className="card card-warm">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="t-sub">Micro Stories</h3>
+                    <span className="t-caption">Narrative Engagement</span>
+                  </div>
+                  <p className="t-body mt-3">
+                    Short philosophical stories with a moral or insight, inspired by
+                    conversations, travel, or encounters with nature.
+                  </p>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <div>
+                      <p className="t-label mb-2">Structure</p>
+                      <ol className="ed-list space-y-1 text-[1.05rem]">
+                        <li>Short story</li>
+                        <li>Unexpected moment / turn</li>
+                        <li>Philosophical reflection</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <p className="t-label mb-2">Script Skeleton</p>
+                      <p className="t-body text-[1.05rem] italic">
+                        &ldquo;A fisherman once told me something I will never forget.
+                        The sea teaches you something strange. You cannot control it.
+                        You can only learn to move with it. Maybe life is the same.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Format 5 */}
+                <div className="card card-warm">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="t-sub">Quiet Questions</h3>
+                    <span className="t-caption">Comments + Saves</span>
+                  </div>
+                  <p className="t-body mt-3">
+                    Short videos asking existential questions. Designed to drive comments,
+                    saves, and high-quality discussion.
+                  </p>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <div>
+                      <p className="t-label mb-2">Structure</p>
+                      <ol className="ed-list space-y-1 text-[1.05rem]">
+                        <li>Simple existential question</li>
+                        <li>Minimal visual frame</li>
+                        <li>Pause</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <p className="t-label mb-2">Example Questions</p>
+                      <ul className="ed-list space-y-1 text-[1.05rem]">
+                        <li>What does it mean to live well?</li>
+                        <li>Why does anything exist at all?</li>
+                        <li>What would you ask the universe if it could answer?</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <Spread
+            src="/editorial/slow-travel.svg"
+            alt="Slow travel — exploration and curiosity"
+            caption="The feeling should always be: human life inside a vast mysterious universe."
+          />
+
+          {/* ── Ch 12 · AI Prompt System ── */}
+          <section id="prompts" className="doc-section">
+            <div className="page-w">
+              <div className="wide-w">
+                <ChapterHead num="12" title="AI Prompt System" />
+              </div>
+              <div className="content-w">
+                <p className="t-lead">
+                  Use a universal style suffix for Higgsfield and similar AI video tools
+                  to keep all videos visually consistent and immediately recognizable.
+                </p>
+              </div>
+
+              <div className="wide-w mt-10">
+                <div className="card card-gold">
+                  <p className="t-label">Universal Style Prompt</p>
+                  <code className="prompt-block mt-4">cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, sense of wonder and curiosity, terrence malick style cinematography, slow gentle camera movement</code>
+                  <p className="t-body mt-4 text-[1rem]">
+                    Append this string to most prompts to preserve recognizability across all content.
+                  </p>
+                </div>
+              </div>
+
+              <div className="wide-w mt-10">
+                <p className="t-label mb-5">Prompt Template</p>
+                <div className="grid gap-4 md:grid-cols-3">
+                  {["1. Scene Description", "2. Visual Atmosphere", "3. Camera Style"].map((step) => (
+                    <div key={step} className="card card-warm text-center">
+                      <p className="t-sub">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="wide-w mt-10">
+                <p className="t-label mb-5">Example Prompts</p>
+                <div className="space-y-5">
+                  <div className="card card-warm">
+                    <p className="t-caption mb-2">Joy of Being Alive</p>
+                    <code className="prompt-block">a man surfing a gentle turquoise wave at sunset, golden sunlight reflecting on the water, joyful expression, tropical atmosphere, cinematic slow motion</code>
+                  </div>
+                  <div className="card card-warm">
+                    <p className="t-caption mb-2">Worldly Mystics</p>
+                    <code className="prompt-block">portrait of Albert Einstein standing under a star filled night sky, looking upward in wonder, subtle cosmic atmosphere blending science and mystery</code>
+                  </div>
+                  <div className="card card-warm">
+                    <p className="t-caption mb-2">Travel Curiosity</p>
+                    <code className="prompt-block">a traveler walking through a colorful Mediterranean street early morning, sunlight hitting pastel buildings, quiet peaceful atmosphere</code>
+                  </div>
+                  <div className="card card-warm">
+                    <p className="t-caption mb-2">Quiet Existential Moments</p>
+                    <code className="prompt-block">person sitting alone on a cliff overlooking the ocean at sunset, vast horizon, peaceful contemplative atmosphere</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Ch 13 · Posting & Production ── */}
+          <section id="posting" className="doc-section">
+            <div className="page-w">
+              <div className="wide-w">
+                <ChapterHead num="13" title="Posting & Production" />
+              </div>
+              <div className="content-w">
+                <p className="t-lead">
+                  Two reels per day: one philosophical, one joy-of-life. Consistency is the
+                  algorithm lever. Publishing daily for several months allows the strongest content
+                  to surface.
+                </p>
+              </div>
+
+              <div className="wide-w mt-10">
+                <p className="t-label mb-4">Weekly Production Matrix</p>
+                <div className="overflow-x-auto">
+                  <table className="ed-table">
+                    <thead>
+                      <tr>
+                        <th>Day</th>
+                        <th>Reel 1 (Philosophy)</th>
+                        <th>Reel 2 (Joy of Life)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Monday</td><td>Einstein</td><td>Joy montage</td></tr>
+                      <tr><td>Tuesday</td><td>Jung</td><td>Sailing sunset</td></tr>
+                      <tr><td>Wednesday</td><td>Bourdain</td><td>Street food</td></tr>
+                      <tr><td>Thursday</td><td>Da Vinci</td><td>Travel moment</td></tr>
+                      <tr><td>Friday</td><td>Cohen</td><td>Quiet reflection</td></tr>
+                      <tr><td>Saturday</td><td>Question reel</td><td>Animals</td></tr>
+                      <tr><td>Sunday</td><td>Micro story</td><td>Nature</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="wide-w mt-14">
+                <p className="t-label mb-4">60-Day Output Forecast</p>
+                <div className="card card-warm">
+                  <p className="t-body">
+                    2 reels/day × 60 days = <strong>120 reels</strong>
+                  </p>
+                  <div className="mt-5 space-y-4">
+                    {[
+                      { label: "Normal reels", count: 90, pct: 75 },
+                      { label: "Good reels", count: 25, pct: 21 },
+                      { label: "Viral reels", count: 5, pct: 10 }
+                    ].map((bar) => (
+                      <div key={bar.label}>
+                        <div className="flex items-center justify-between text-[1rem]">
+                          <span className="t-body">{bar.label}</span>
+                          <span className="font-medium">{bar.count}</span>
+                        </div>
+                        <div className="mt-1 h-2 rounded-full bg-[var(--ink-05)]">
+                          <div
+                            className="h-2 rounded-full bg-[var(--gold)]"
+                            style={{ width: `${bar.pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="t-body mt-5 text-[1.05rem]">
+                    Those 5 viral reels can drive 10k–100k followers. This is how small accounts
+                    accelerate quickly.
+                  </p>
+                </div>
+              </div>
+
+              <div className="wide-w mt-14">
+                <div className="card card-gold">
+                  <p className="t-label">Growth Tactic</p>
+                  <p className="t-body mt-3">
+                    Every 5–7 reels, post a direct follow invitation: &ldquo;If you enjoy these
+                    reflections on life and curiosity, follow for more.&rdquo; This simple cadence
+                    converts viewers into followers.
+                  </p>
+                </div>
+              </div>
+
+              <div className="wide-w mt-14">
+                <p className="t-label mb-4">Profile Bio Recommendation</p>
+                <div className="card card-warm">
+                  <p className="t-brand text-[1.3rem]">The Great Mystery</p>
+                  <p className="t-body mt-2">Everything is a mystery. Everyone is a mystic.</p>
+                  <p className="t-body">Exploring life, curiosity and wonder.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
 
-      <footer className="mx-auto w-full px-4 pb-10 md:px-8">
-        <p className="border-t border-[var(--color-line)] pt-6 text-[0.72rem] uppercase tracking-[0.12em] text-[var(--color-ink-soft)]">
-          <span className="brand-wordmark">The Great Mystery</span> · Founder, Advisor, and
-          Investor Review Document
+      {/* ────── Footer ────── */}
+      <footer className="doc-footer page-w">
+        <p className="t-brand text-[1.1rem]">The Great Mystery</p>
+        <p className="t-caption mt-2">
+          Founder, Advisor, and Investor Review Document · March 2026
+        </p>
+        <p className="mt-6">
+          <a
+            href="#top"
+            className="back-to-top t-label border-b border-[var(--gold)] pb-1 text-[var(--ink-60)] transition-colors hover:text-[var(--ink)]"
+          >
+            Back to top
+          </a>
         </p>
       </footer>
     </div>

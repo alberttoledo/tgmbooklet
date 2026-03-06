@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap"
 });
 
@@ -18,7 +18,7 @@ const staatliches = Staatliches({
 });
 
 const perfectlyNineties = localFont({
-  variable: "--font-perfectly-nineties",
+  variable: "--font-heading",
   src: [
     { path: "../public/fonts/PerfectlyNineties-Regular.otf", weight: "400", style: "normal" },
     { path: "../public/fonts/PerfectlyNineties-Semibold.otf", weight: "600", style: "normal" },
@@ -28,8 +28,9 @@ const perfectlyNineties = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "The Great Mystery",
-  description: "Philosophy, Brand System & Strategic Roadmap"
+  title: "The Great Mystery — Strategy Dossier",
+  description:
+    "A philosophy studio built as a living system. Identity, audience growth, apps, products, community, and experiences as one compounding brand architecture."
 };
 
 export default function RootLayout({
@@ -40,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${perfectlyNineties.variable} ${staatliches.variable} bg-[#f4efe4] text-[#171513] antialiased`}
+        className={`${inter.variable} ${perfectlyNineties.variable} ${staatliches.variable} antialiased`}
       >
         {children}
       </body>
