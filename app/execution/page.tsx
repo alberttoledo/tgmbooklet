@@ -72,14 +72,14 @@ export default function ExecutionPage() {
                 <div className="mt-6 grid gap-10 lg:grid-cols-3">
                   <div>
                     <p className="toc-part-label">Part One · The Roadmap</p>
-                    <ol className="toc-list">
+                    <ol className="toc-list toc-list--single">
                       <li><a href="#phases"><span className="toc-num">01</span><span className="toc-title">Five Phases of Growth</span></a></li>
                       <li><a href="#milestone"><span className="toc-num">02</span><span className="toc-title">The 90-Day Priority</span></a></li>
                     </ol>
                   </div>
                   <div>
                     <p className="toc-part-label">Part Two · Instagram</p>
-                    <ol className="toc-list">
+                    <ol className="toc-list toc-list--single">
                       <li><a href="#identity"><span className="toc-num">03</span><span className="toc-title">Visual Identity</span></a></li>
                       <li><a href="#formats"><span className="toc-num">04</span><span className="toc-title">Five Reel Formats</span></a></li>
                       <li><a href="#schedule"><span className="toc-num">05</span><span className="toc-title">Weekly Schedule & Growth</span></a></li>
@@ -87,7 +87,7 @@ export default function ExecutionPage() {
                   </div>
                   <div>
                     <p className="toc-part-label">Part Three · Toolkit</p>
-                    <ol className="toc-list">
+                    <ol className="toc-list toc-list--single">
                       <li><a href="#prompts"><span className="toc-num">06</span><span className="toc-title">AI Prompt System</span></a></li>
                       <li><a href="#voice"><span className="toc-num">07</span><span className="toc-title">Voiceover & Captions</span></a></li>
                       <li><a href="#workflow"><span className="toc-num">08</span><span className="toc-title">Production Workflow</span></a></li>

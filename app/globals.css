@@ -325,6 +325,27 @@ p, li {
   font-size: 1.25rem;
 }
 
+/* Execution TOC: keep one clean column per part */
+.toc-list--single {
+  grid-template-columns: 1fr;
+}
+
+.toc-list--single a {
+  align-items: flex-start;
+  gap: 1rem;
+  min-height: 4.2rem;
+}
+
+.toc-list--single .toc-num {
+  line-height: 1;
+  margin-top: 0.12rem;
+}
+
+.toc-list--single .toc-title {
+  max-width: 18ch;
+  line-height: 1.4;
+}
+
 /* ── Section ── */
 
 .doc-section {
@@ -688,7 +709,7 @@ p, li {
 
   .pull-quote {
     margin: 2.5rem auto;
-    max-width: 18ch;
+    max-width: min(26ch, 100%);
     padding: 1.5rem 0;
   }
 
@@ -705,6 +726,23 @@ p, li {
   .prompt-block {
     font-size: 0.96rem;
   }
+
+  .doc-footer {
+    padding-top: 2.4rem;
+    padding-bottom: calc(2.9rem + env(safe-area-inset-bottom));
+  }
+
+  .doc-footer > div {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    row-gap: 0.95rem;
+  }
+
+  .doc-footer .t-caption,
+  .doc-footer .t-label {
+    display: block;
+    line-height: 1.45;
+  }
 }
 
 @media (min-width: 768px) {
@@ -717,6 +755,11 @@ p, li {
   .toc-list {
     grid-template-columns: 1fr 1fr;
     column-gap: 2.5rem;
+  }
+
+  .toc-list--single {
+    grid-template-columns: 1fr !important;
+    column-gap: 0;
   }
 
   .grid-2 {
