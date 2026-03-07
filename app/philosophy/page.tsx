@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Philosophy Booklet — The Great Mystery",
+  title: "Vision — The Great Mystery",
   description: "What The Great Mystery is, why it exists, who it is for, and how the company grows."
 };
 
@@ -45,7 +45,7 @@ export default function PhilosophyPage() {
         {/* Hero */}
         <section className="hero page-w">
           <div className="wide-w text-center">
-            <p className="t-label">Company Booklet · 2026</p>
+            <p className="t-label">Vision · 2026</p>
             <h1 className="t-hero mt-5 mx-auto max-w-[16ch]">The Great Mystery</h1>
             <p className="t-lead mt-6 mx-auto max-w-[40ch]">
               Everything is a mystery. Everyone is a mystic.
@@ -366,7 +366,7 @@ export default function PhilosophyPage() {
       {/* Footer */}
       <footer className="doc-footer page-w">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <p className="t-caption">The Great Mystery · Company Booklet · 2026</p>
+          <p className="t-caption">The Great Mystery · Vision · 2026</p>
           <Link
             href="/"
             className="t-label border-b border-[var(--gold)] pb-1 text-[var(--ink-60)] transition-colors hover:text-[var(--ink)]"

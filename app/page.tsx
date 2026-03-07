@@ -19,12 +19,12 @@ export default function HomePage() {
       <main className="page-w flex flex-1 items-start pb-20">
         <div className="wide-w w-full">
           <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-            {/* Philosophy Booklet */}
+            {/* Vision */}
             <Link href="/philosophy" className="group block">
               <article className="card card-warm relative overflow-hidden transition-all duration-300 group-hover:border-[var(--gold)]">
                 <div className="relative z-10">
                   <p className="t-label">Volume One</p>
-                  <h2 className="t-display mt-4">Philosophy Booklet</h2>
+                  <h2 className="t-display mt-4">Vision</h2>
                   <p className="t-lead mt-4 max-w-[38ch]">
                     What The Great Mystery is, why it exists, who it is for,
                     and how the company grows.
@@ -44,7 +44,7 @@ export default function HomePage() {
                     ))}
                   </ul>
                   <p className="mt-8 inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--ink-60)] transition-colors group-hover:text-[var(--gold)]">
-                    Open booklet
+                    Open vision
                     <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
                   </p>
                 </div>

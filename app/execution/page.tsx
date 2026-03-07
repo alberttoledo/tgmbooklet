@@ -51,7 +51,7 @@ export default function ExecutionPage() {
             <div className="mt-10 max-w-[52ch]">
               <div className="card card-gold">
                 <p className="t-body">
-                  The philosophy booklet tells you what The Great Mystery is and why it exists.
+                  The vision document tells you what The Great Mystery is and why it exists.
                   This document tells you what to do tomorrow morning.
                 </p>
                 <p className="t-body mt-3">
