@@ -42,13 +42,13 @@ export default function ExecutionPage() {
       <main id="top">
         {/* Hero */}
         <section className="hero page-w">
-          <div className="wide-w">
+          <div className="wide-w px-5 sm:px-8 md:px-8 lg:px-0">
             <p className="t-label">Founder&apos;s Execution Guide</p>
             <h1 className="t-hero mt-5 max-w-[18ch]">The Great Mystery</h1>
             <p className="t-lead mt-6 max-w-[52ch]">
               Instagram growth · Content strategy · Visual identity · Production workflows
             </p>
-            <div className="content-w mt-10">
+            <div className="mt-10 max-w-[52ch]">
               <div className="card card-gold">
                 <p className="t-body">
                   The philosophy booklet tells you what The Great Mystery is and why it exists.
