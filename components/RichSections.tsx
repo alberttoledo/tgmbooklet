@@ -63,9 +63,9 @@ const accentPalette = [
 
 const influenceBoard = [
   {
-    title: "Terrence Malick Influence",
+    title: "Mediterranean Arthouse Influence",
     caption: "Poetic natural light, wind, and contemplative pace.",
-    src: "/editorial/references/malick-style.png"
+    src: "/editorial/references/mediterranean-life-style.png"
   },
   {
     title: "Travel Documentary",
@@ -205,7 +205,7 @@ export function ReelFormatsCatalog() {
 }
 
 const universalPrompt =
-  "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, sense of wonder and curiosity, terrence malick style cinematography, slow gentle camera movement";
+  "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, sense of wonder and curiosity, Mediterranean arthouse cinematography inspired by Vicky Cristina Barcelona and Call Me by Your Name, slow gentle camera movement";
 
 export function PromptSystemBoard() {
   return (

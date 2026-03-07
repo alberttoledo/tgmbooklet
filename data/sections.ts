@@ -212,7 +212,7 @@ export const sections: ManifestoSection[] = [
       {
         type: "list",
         items: [
-          "Terrence Malick films",
+          "Mediterranean arthouse films (Vicky Cristina Barcelona, Call Me by Your Name)",
           "travel documentaries",
           "cosmic imagery",
           "warm Mediterranean life",
@@ -555,7 +555,7 @@ export const sections: ManifestoSection[] = [
       },
       {
         type: "paragraph",
-        text: "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, vibrant natural colors, dreamy atmosphere, terrence malick style cinematography"
+        text: "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, vibrant natural colors, dreamy atmosphere, Mediterranean arthouse cinematography inspired by Vicky Cristina Barcelona and Call Me by Your Name"
       },
       { type: "subheading", text: "Example Prompt - Worldly Mystics" },
       {
@@ -597,7 +597,7 @@ export const sections: ManifestoSection[] = [
       { type: "subheading", text: "Higgsfield Universal Style Prompt" },
       {
         type: "paragraph",
-        text: "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, sense of wonder and curiosity, terrence malick style cinematography, slow gentle camera movement"
+        text: "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, sense of wonder and curiosity, Mediterranean arthouse cinematography inspired by Vicky Cristina Barcelona and Call Me by Your Name, slow gentle camera movement"
       },
       {
         type: "paragraph",
@@ -619,7 +619,7 @@ export const sections: ManifestoSection[] = [
       },
       {
         type: "paragraph",
-        text: "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, terrence malick style cinematography"
+        text: "cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, Mediterranean arthouse cinematography inspired by Vicky Cristina Barcelona and Call Me by Your Name"
       }
     ]
   },

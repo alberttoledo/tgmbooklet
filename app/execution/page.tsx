@@ -308,7 +308,7 @@ export default function ExecutionPage() {
                 <div className="card card-warm">
                   <p className="t-label">Visual References</p>
                   <ul className="ed-list mt-4 space-y-2">
-                    <li className="t-body">Cinema: Terrence Malick (The Tree of Life, To The Wonder)</li>
+                    <li className="t-body">Cinema: Vicky Cristina Barcelona, Call Me by Your Name</li>
                     <li className="t-body">Documentary: Anthony Bourdain: Parts Unknown</li>
                     <li className="t-body">Photography: Sebastião Salgado, Alex Strohl</li>
                     <li className="t-body">Brands: Kinfolk magazine — editorial calm, honest light</li>
@@ -607,7 +607,7 @@ export default function ExecutionPage() {
             <div className="wide-w mt-10">
               <div className="card card-gold">
                 <p className="t-label">Universal Style Prompt</p>
-                <code className="prompt-block mt-4">cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, sense of wonder and curiosity, Terrence Malick style cinematography, slow gentle camera movement, 35mm film look with bokeh</code>
+                <code className="prompt-block mt-4">cinematic documentary style, warm natural lighting, golden hour sunlight, shallow depth of field, soft film grain, anamorphic lens look, dreamy but realistic, vibrant natural colors, sense of wonder and curiosity, Mediterranean arthouse cinematography inspired by Vicky Cristina Barcelona and Call Me by Your Name, slow gentle camera movement, 35mm film look with bokeh</code>
               </div>
             </div>
 
